@@ -3,7 +3,7 @@
 </h1>
 
 <h3 align="center">
- Challenge 2: Gympoint, the beginning
+ Gympoint
 </h3>
 
 <blockquote align="center">Developed during Rocketseat GoStack9 Bootcamp</blockquote>
