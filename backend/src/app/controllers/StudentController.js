@@ -1,6 +1,5 @@
 import * as Yup from 'yup';
 import Student from '../models/Student';
-import Admin from '../models/User';
 
 class StudentController {
   async store(req, res) {
@@ -31,14 +30,6 @@ class StudentController {
 
     if (studentExists) {
       return res.status(400).json({ error: 'Student already exists!' });
-    }
-
-    const admin = await Admin.findByPk(req.userID);
-
-    if (!admin) {
-      return res
-        .status(400)
-        .json({ error: `You need an admin for your register!` });
     }
 
     const student = await Student.create(req.body);
