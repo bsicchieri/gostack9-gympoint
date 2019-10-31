@@ -10,7 +10,9 @@ class SessionController {
       email: Yup.string()
         .email()
         .required(),
-      password: Yup.string().required(),
+      password: Yup.string()
+        .required()
+        .min(6),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -22,11 +24,11 @@ class SessionController {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      return res.statis(401).json({ error: 'User not found' });
+      return res.statis(401).json({ error: 'User not found!' });
     }
 
     if (!(await user.checkPassword(password))) {
-      return res.status(401).json({ error: 'Password does not match' });
+      return res.status(401).json({ error: 'Password does not match!' });
     }
 
     const { id, name } = user;
