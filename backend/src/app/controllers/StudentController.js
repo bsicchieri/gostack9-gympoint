@@ -8,6 +8,9 @@ class StudentController {
       email: Yup.string()
         .email()
         .required(),
+      age: Yup.number().required(),
+      weight: Yup.number().required(),
+      height: Yup.number().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -22,12 +25,17 @@ class StudentController {
       return res.status(400).json({ error: 'Student already exists!' });
     }
 
-    const { id, name, email } = await Student.create(req.body);
+    const { id, name, email, age, weight, height } = await Student.create(
+      req.body
+    );
 
     return res.json({
       id,
       name,
       email,
+      age,
+      weight,
+      height,
     });
   }
 
@@ -35,6 +43,9 @@ class StudentController {
     const schema = Yup.object().shape({
       name: Yup.string(),
       email: Yup.string().email(),
+      age: Yup.number().required(),
+      weight: Yup.number().required(),
+      height: Yup.number().required(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -56,13 +67,15 @@ class StudentController {
       }
     }
 
-    const { id, name } = await student.update(req.body);
+    const { id, name, age, weight, height } = await student.update(req.body);
 
     // campos que serão retornados
     return res.json({
       id,
       name,
-      email,
+      age,
+      weight,
+      height,
     });
   }
 }
