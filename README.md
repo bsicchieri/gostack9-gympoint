@@ -14,11 +14,17 @@ Gym manager app, the Gympoint.
 
 ## Tools
 
-An application created from scratch using Express and other tools:
-
+- Express;
 - Sucrase + Nodemon;
 - ESLint + Prettier + EditorConfig;
-- Sequelize (Use PostgreSQL or MySQL).
+- Sequelize (PostgreSQL);
+- MongoDB Compass;
+- Postbird;
+- Redis;
+- Insomnia;
+- Mailtrap;
+- Handlebars;
+- Sentry.
 
 ## Functionalities
 
