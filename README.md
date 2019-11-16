@@ -14,7 +14,7 @@ Gym manager app, the Gympoint.
 
 ## Tools
 
-Create an application from scratch using Express, and you need to configure the following tools:
+An application created from scratch using Express and other tools:
 
 - Sucrase + Nodemon;
 - ESLint + Prettier + EditorConfig;
@@ -26,14 +26,26 @@ Create an application from scratch using Express, and you need to configure the 
 
 Allow a user to authenticate to your application using email and a password.
 
-Creating an admin user using the [sequelize seeds] functionality (https://sequelize.org/master/manual/migrations.html#creating-first-seed), this functionality is used to automatically create database records .
+An admin user created using the [sequelize seeds] functionality (https://sequelize.org/master/manual/migrations.html#creating-first-seed).
 
-#### 2. Student Registration
+#### 2. Administrator
 
-Allow students to be kept (registered / updated) in the application using name, email, age, weight and height.
+Administrators can register student enrollment plans and make their enrollment.
 
-Use a new table in the database called `students`.
+Plan and enrollment can be created, viewed, edited and deleted.
+
+When a student enrolls, they receive an email with details of their enrollment at the academy such as plan, end date, value, and a welcome message.
+
+When a request for help is answered, the student receive an email from the platform with the academy's question and answer.
+
+#### 3. Student
+
+Students are kept (registered / updated) in the application using name, email, age, weight and height.
 
 The registration of students can only be done by administrators authenticated in the application.
 
 The student cannot authenticate to the system, ie has no password.
+
+When the student arrives at the gym, he / she checks in only by entering his / her registration ID (the user can only do 5 checkins within 7 consecutive days).
+
+The student can create requests for assistance to the gym regarding any exercise, food or instruction whatsoever.
