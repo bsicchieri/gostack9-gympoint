@@ -6,7 +6,8 @@ class HelpOrderController {
     const { page = 1 } = req.query;
 
     const { id } = req.params;
-    const supportOrder = await HelpOrder.findAll({
+
+    const helporder = await HelpOrder.findAll({
       where: { student_id: id },
       limit: 20,
       offset: (page - 1) * 20,
@@ -19,19 +20,19 @@ class HelpOrderController {
       ],
     });
 
-    return res.json(supportOrder);
+    return res.json(helporder);
   }
 
   async store(req, res) {
     const { id } = req.params;
     const { question } = req.body;
 
-    const addSupportQuestion = await HelpOrder.create({
+    const helporder = await HelpOrder.create({
       student_id: id,
       question,
     });
 
-    return res.json(addSupportQuestion);
+    return res.json(helporder);
   }
 }
 

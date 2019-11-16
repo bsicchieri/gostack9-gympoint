@@ -2,12 +2,15 @@ import * as Yup from 'yup';
 
 import HelpOrder from '../models/HelpOrder';
 import Student from '../models/Student';
+import AnswerMail from '../jobs/AnswerMail';
+
+import Queue from '../../lib/Queue';
 
 class AnswerController {
   async index(req, res) {
     const { page = 1 } = req.query;
 
-    const anwerOrder = await HelpOrder.findAll({
+    const helporder = await HelpOrder.findAll({
       where: {
         answer: null,
       },
@@ -22,11 +25,11 @@ class AnswerController {
       ],
     });
 
-    if (anwerOrder.length === 0) {
-      return res.status(200).json('All clear!');
+    if (helporder.length === 0) {
+      return res.status(200).json('You have no new questions!');
     }
 
-    return res.json(anwerOrder);
+    return res.json(helporder);
   }
 
   async store(req, res) {
@@ -41,7 +44,7 @@ class AnswerController {
     const { id } = req.params;
     const { answer } = req.body;
 
-    const anwerOrder = await HelpOrder.findOne({
+    const helporder = await HelpOrder.findOne({
       where: { student_id: id },
       include: [
         {
@@ -54,12 +57,16 @@ class AnswerController {
 
     const answerAt = new Date();
 
-    await anwerOrder.update({
+    await helporder.update({
       answer,
       answer_at: answerAt,
     });
 
-    return res.json(anwerOrder);
+    await Queue.add(AnswerMail.key, {
+      helporder,
+    });
+
+    return res.json(helporder);
   }
 }
 
