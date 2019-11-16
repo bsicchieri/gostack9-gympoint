@@ -32,7 +32,7 @@ Gym manager app, the Gympoint.
 
 Allow a user to authenticate to your application using email and a password.
 
-An admin user created using the [sequelize seeds] functionality (https://sequelize.org/master/manual/migrations.html#creating-first-seed).
+An admin user created using the sequelize seeds functionality.
 
 #### 2. Administrator
 
